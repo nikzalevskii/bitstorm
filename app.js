@@ -22,7 +22,8 @@ MongoDBConnection.getConnection((error, connection) => {
     const app = express();
 
     app.use(express.static(path.join(__dirname, 'public')));
-    app.use(express.static(path.join(__dirname, 'frontend/docs')));
+    app.use(express.static(path.join(__dirname, 'frontend', 'docs'))); // Папка с фронтенд файлами
+    // app.use(express.static(path.join(__dirname, 'frontend/docs')));
     app.use(express.json());
     app.use(cors());
 
@@ -63,13 +64,11 @@ MongoDBConnection.getConnection((error, connection) => {
     app.use("/api/users", userRoutes);
 
 
+    // Один обработчик для всех остальных запросов (для фронтенда)
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'docs', 'index.html')); // Путь к index.html для фронтенда
+        res.sendFile(path.join(__dirname, 'frontend', 'docs', 'index.html')); // Путь к index.html для фронтенда
     });
 
-    app.get('*', (req, res) => {
-        res.redirect('https://itstorm.onrender.com' + req.originalUrl); // Перенаправляем на фронтенд
-    });
 
 // Обработка ошибок 404 для маршрутов, которые не существуют
     app.use(function (req, res, next) {
