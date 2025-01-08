@@ -1,5 +1,5 @@
 # **ItStorm**  
-A Content-Based Website for Users to Register, Comment, and Like Articles  
+A platform where users can read articles, register, leave comments, and engage by liking content.
 
 **Live Demo:** [https://bitstorm.onrender.com/](https://bitstorm.onrender.com/)  
 
